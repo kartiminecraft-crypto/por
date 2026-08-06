@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --foreground: 230 239 236;
+  --muted-foreground: 255 255 255;
+  --background: 17 17 17;
+}
+
+@theme inline {
+  --color-foreground: rgb(var(--foreground));
+  --color-muted-foreground: rgba(var(--muted-foreground) / 0.4);
+  --color-background: rgb(var(--background));
+}
+
+/* ─── Root overflow guard ──────────────────────────────────────────────────── */
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background: #0B0F0E;
+  overflow-x: hidden;
+  max-width: 100%;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ─── Global asset constraints ─────────────────────────────────────────────── */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+/* ─── Global mobile typography & spacing tokens ────────────────────────────── */
+:root {
+  --px-edge: 48px;      /* desktop side padding */
+  --section-gap: 0px;   /* desktop section gap (sections are self-spacing) */
+}
+
+@media (max-width: 767px) {
+  :root {
+    --px-edge: 20px;
+    --section-gap: 64px;
+  }
+
+  /* Fluid display headings */
+  h1 {
+    font-size: clamp(40px, 12vw, 96px) !important;
+    line-height: 1.15 !important;
+  }
+  h2 {
+    font-size: clamp(28px, 8vw, 56px) !important;
+    line-height: 1.15 !important;
+  }
+  h3 {
+    font-size: clamp(20px, 6vw, 36px) !important;
+    line-height: 1.2 !important;
+  }
+  p, li {
+    font-size: clamp(13px, 4vw, 18px);
+    line-height: 1.6;
+  }
+
+  /* Tap target floors — only applies when no inline display override */
+  a:not([style*="display"]),
+  button:not([style*="display"]) {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Content images fill width; skip absolutely-positioned decorative images */
+  img:not([style*="position: absolute"]):not([style*="position:absolute"]):not([style*="mixBlendMode"]):not([style*="mix-blend-mode"]) {
+    max-width: 100%;
+  }
+
+  /* 3-D canvases must never overflow */
+  canvas {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Collapse any multi-column grid to single column by default */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce parallax/transform intensity — heavy motion handled per-section */
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  :root {
+    --px-edge: 32px;
+  }
+}
+
+/* ─── Reduced-motion: kill decorative CSS animations only ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none !important; }
+  .headline-letter { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .nav-row, .bottom-row { animation: none !important; opacity: 1 !important; }
+  .aurora-layer { animation: none !important; opacity: 1 !important; }
+  .scroll-text { animation: none !important; }
+  .animate-grid { animation: none !important; }
+}
+
+@keyframes drift1 {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(60px, -40px) scale(1.15) rotate(8deg); }
+}
+@keyframes drift2 {
+  0%   { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+  100% { transform: translate(-50px, 50px) scale(0.95) rotate(-6deg); }
+}
+@keyframes drift3 {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(40px, 60px) scale(1.2) rotate(10deg); }
+}
+@keyframes drift4 {
+  0%   { transform: translate(0, 0) scale(1.05) rotate(0deg); }
+  100% { transform: translate(-70px, -30px) scale(0.9) rotate(-12deg); }
+}
+@keyframes drift5 {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(30px, -70px) scale(1.1) rotate(5deg); }
+}
+
+@keyframes floatScroll {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes auroraReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.aurora-layer {
+  animation: auroraReveal 1.2s ease-out forwards;
+}
+
+.nav-row {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+
+.bottom-row {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+
+.headline-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeRise 0.5s ease-out forwards;
+}
+
+.scroll-text {
+  animation: floatScroll 2s ease-in-out infinite;
+}
+
