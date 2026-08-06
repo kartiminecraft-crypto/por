@@ -2,6 +2,8 @@
 
 Personal portfolio site built with **React 19 + Vite + Tailwind CSS v4**.
 
+Live site: **https://kartiminecraft-crypto.github.io/por/**
+
 ## Development
 
 ```bash
@@ -17,11 +19,13 @@ pnpm build     # outputs to dist/, rooted at /por/ for GitHub Pages
 
 ## Deployment
 
-The live site is served from the `gh-pages` branch (contents of `dist/`).
-To update it after a change:
+Deployment is automatic via GitHub Actions (`.github/workflows/pages.yml`):
+every push to `main` builds the site and publishes it to GitHub Pages.
+No manual steps needed — just push:
 
 ```bash
-pnpm build
-git push origin main      # commit source changes
-git push origin gh-pages  # update the deployed build
+git push origin main
 ```
+
+The workflow installs pnpm + Node, runs `pnpm build`, and deploys `dist/`
+using the `actions/deploy-pages` action.
