@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 import Hero from "./Hero"
 import About from "./About"
 import Skills from "./Skills"
@@ -23,6 +24,10 @@ function SiteContent() {
   function setLang(next: Lang) {
     navigate(`/${LANG_TO_URL[next]}`, { replace: true })
   }
+
+  useEffect(() => {
+    document.title = lang === "ua" ? "Ілля Скорих" : "Illia Skorykh"
+  }, [lang])
 
   return (
     <LanguageProvider lang={lang} setLang={setLang}>
