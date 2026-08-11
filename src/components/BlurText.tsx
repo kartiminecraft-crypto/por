@@ -18,7 +18,7 @@ export default function BlurText({ text, style }: BlurTextProps) {
   const [inView, setInView] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const containerRef = useRef<HTMLParagraphElement>(null)
-  const animationTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const animationTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   const words: WordData[] = useMemo(() => {
     return text.split(" ").map((word, index, arr) => {
