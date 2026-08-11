@@ -552,7 +552,7 @@ export default function Hero() {
         }}
       >
         <MorphingText
-          texts={["PORTFOLIO WEBSITE", "ILLIA SKORYKH"]}
+          texts={t.hero.morphingTexts}
           style={{
             fontFamily: "'Hanken Grotesk', sans-serif",
             fontWeight: 900,

@@ -11,6 +11,7 @@ export const translations = {
     hero: {
       role: "UI/UX DESIGNER",
       location: "BASED IN RIGA",
+      morphingTexts: ["PORTFOLIO WEBSITE", "ILLIA SKORYKH"],
     },
     about: {
       label: "ABOUT ME",
@@ -104,7 +105,8 @@ export const translations = {
     },
     hero: {
       role: "UX/UI ДИЗАЙНЕР",
-      location: "БАЗУЄТЬСЯ В РИЗІ",
+      location: "ЗНАХОЖУСЬ У РИЗІ",
+      morphingTexts: ["САЙТ ПОРТФОЛІО", "ІЛЛЯ СКОРИХ"],
     },
     about: {
       label: "ПРО МЕНЕ",

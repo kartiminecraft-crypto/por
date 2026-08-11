@@ -21,7 +21,7 @@ function LiveClock() {
 const SOCIALS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/ilya-i-027223317/" },
   { label: "Telegram", href: "https://t.me/ilyawo" },
-  { label: "Whatsapp", href: "#" },
+  { label: "Whatsapp", href: "https://wa.me/37125242908" },
   { label: "X.com",    href: "https://x.com/BYRYRIS" },
 ]
 

@@ -1,6 +1,7 @@
 # UI/UX Designer — Portfolio
 
 Personal portfolio site built with **React 19 + Vite + Tailwind CSS v4**.
+Bilingual (EN/UK) with clean routes: `/en`, `/uk`.
 
 Live site: **https://kartiminecraft-crypto.github.io/por/**
 

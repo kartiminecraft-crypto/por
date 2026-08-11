@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import { copyFileSync } from 'node:fs'
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -14,7 +15,7 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: false,
     },
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), spaFallback()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -32,3 +33,19 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+/**
+ * SPA fallback for GitHub Pages: the site uses react-router with clean
+ * sub-paths (/en, /uk). GitHub Pages has no history-rewriting, so any
+ * deep link resolves to a 404 — we serve 404.html as a copy of index.html
+ * and let the router pick up the actual URL client-side.
+ */
+function spaFallback(): Plugin {
+  return {
+    name: 'spa-fallback-404',
+    apply: 'build',
+    closeBundle() {
+      copyFileSync(path.resolve(__dirname, 'dist/index.html'), path.resolve(__dirname, 'dist/404.html'))
+    },
+  }
+}
